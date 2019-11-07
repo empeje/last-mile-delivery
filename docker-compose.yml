@@ -1,0 +1,20 @@
+version: '3.7'
+
+volumes:
+  mysql_volume:
+
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: last-mile-d
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql-root
+    volumes:
+      - type: volume
+        source: mysql_volume
+        target: /var/lib/mysql
+
