@@ -1,0 +1,6 @@
+# ignored personal favour of .idea config
+.idea
+
+# javascript related tooling
+node_modules
+docs/index.bundle.js

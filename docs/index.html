@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Last Mile Delivery Design</title>
+</head>
+<body>
+<h1>Last Mile Delivery Data Design</h1>
+<div class="mermaid">
+  classDiagram
+  class Order
+  Order : +UUID id
+  Order : +DECIMAL(7,4) origin
+  Order : +DECIMAL(7,4) destination
+  Order : +STRING status
+  Order : getOrigin()
+  Order : getDestination()
+</div>
+<script src="index.bundle.js" charset="utf-8"></script>
+</body>
+</html>
