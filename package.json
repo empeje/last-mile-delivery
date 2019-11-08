@@ -9,18 +9,35 @@
   "scripts": {
     "build:docs": "webpack --config webpack.config.docs.js --progress --colors",
     "dev:docs": "yarn build:docs --watch",
-    "deploy:docs": "yarn build:docs && gh-pages -d docs"
+    "deploy:docs": "yarn build:docs && gh-pages -d docs",
+    "runner": "node -r esm",
+    "runner:dev": "node -r esm -r dotenv/config",
+    "start": "yarn runner src/index.js",
+    "develop": "yarn runner:dev src/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsdoc": "^17.1.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-security": "^1.4.0",
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "mermaid": "^8.4.1",
     "popper.js": "^1.16.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1"
   }
 }

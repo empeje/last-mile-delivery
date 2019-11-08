@@ -4,3 +4,6 @@
 # javascript related tooling
 node_modules
 docs/index.bundle.js
+
+# project-specific convention
+.env

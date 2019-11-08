@@ -1,0 +1,16 @@
+{
+  "plugins": ["import", "jsdoc", "prettier","security"],
+  "env": { "node": true },
+  "extends": [
+    "airbnb-base",
+    "plugin:jsdoc/recommended",
+    "plugin:prettier/recommended",
+    "plugin:security/recommended"
+  ],
+  "rules": {
+    "no-console": 0,
+    "import/prefer-default-export": 0,
+    "complexity": ["error", { "max": 10 }],
+    "no-underscore-dangle": 0
+  }
+}
