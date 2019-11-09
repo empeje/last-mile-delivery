@@ -32,6 +32,7 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 | Integration Testing | Integration level testing e.g. API                            |             |
 | End-to-end Testing  | Blackbox testing, running real service with real ext. service |             |
 | Auto-reload in Dev  | File watcher that auto reload whenever changes occurs         | ✓ Yes       |
+| Continuous Int.     | Continuous integration using Travis CI for public repository  | ✓ Yes       |
 
 ## Production Checklist
 
