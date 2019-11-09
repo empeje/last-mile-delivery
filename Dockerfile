@@ -33,7 +33,7 @@ RUN apk --update add git openssh && \
 # @ Step is isolated so docker caches and only runs npm install if package.json or package-lock.json is changed
 #
 COPY ./package.json ./yarn.lock ./
-RUN yarn
+RUN yarn install --production=true
 
 # Copy the other files in api_server over
 #
