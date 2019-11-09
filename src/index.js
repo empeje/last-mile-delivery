@@ -13,6 +13,16 @@ app.use(router);
 // After the router attach error logger
 app.use(errorLoggerMiddleware);
 
-app.listen(BACKEND_PORT, () => {
+const server = app.listen(BACKEND_PORT, () => {
   logger.info(`Server is running on port ${BACKEND_PORT}`);
+});
+
+process.on("SIGTERM", async () => {
+  logger.info("SIGTERM signal received.");
+  logger.info("Closing HTTP server.");
+  server.close(async () => {
+    logger.info("HTTP server closed.");
+
+    // TODO: Close database connection here
+  });
 });
