@@ -13,13 +13,15 @@
     "runner": "node -r esm",
     "runner:dev": "nodemon -r esm -r dotenv/config",
     "start": "yarn runner src/index.js",
-    "develop": "yarn runner:dev src/index.js"
+    "develop": "yarn runner:dev src/index.js",
+    "test": "yarn runner $(which npx) mocha test/**/*.test.js"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
     "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -31,6 +33,7 @@
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "mermaid": "^8.4.1",
+    "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "popper.js": "^1.16.0",
     "webpack": "^4.41.2",
