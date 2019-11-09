@@ -1,6 +1,3 @@
-setup:
-  config:
-    PORT: 3000
 build:
   docker:
     web: Dockerfile
