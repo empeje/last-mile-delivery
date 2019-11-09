@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.com/empeje/last-mile-delivery.svg?branch=master)](https://travis-ci.com/empeje/last-mile-delivery)
 
+## Live Preview
+
+You can use [https://last-mile-delivery.herokuapp.com/][HEROKU_INSTANCE] for Live Preview, this instance running on free Dyno hours, so please expect error when our database records limit or hours limit reached.
+
 ## How to run from source
 
 * You can run the following script which run our [docker-compose](./docker-compose.yml) setup in detached mode and then attached to the logs so that you'll not stop the app when you detached from the log.
@@ -22,7 +26,7 @@ This run exactly the same thing with running it from source except we use prebui
 
 ## Design Documentation
 
-The architectural design of the system can be open at [empeje.github.io/last-mile-delivery][DESIGN_DOCS]
+The architectural design of the system can be open at [empeje.github.io/last-mile-delivery][DESIGN_DOCS].
 
 ### Maintaining Documentation
 
@@ -70,9 +74,11 @@ This meant to update your Heroku CLI to support setting up via heroku manifest s
 ```bash
 $ heroku update beta
 $ heroku plugins:install @heroku-cli/plugin-manifest
+$ heroku create your-app-name --manifest
+$ git push heroku master
 ```
-
 
 [DESIGN_DOCS]: https://empeje.github.io/last-mile-delivery/
 [MERMAID]: https://mermaidjs.github.io/#/
 [HUB_REGISTRY]: https://hub.docker.com/repository/docker/mappuji/last-mile-delivery
+[HEROKU_INSTANCE]: https://last-mile-delivery.herokuapp.com/
