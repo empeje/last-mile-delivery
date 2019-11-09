@@ -4,6 +4,7 @@
 # javascript related tooling
 node_modules
 docs/index.bundle.js
+yarn-error.log
 
 # project-specific convention
 .env

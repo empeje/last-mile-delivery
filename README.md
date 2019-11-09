@@ -48,8 +48,8 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 | Concurrency         | Scale out via the process model                                  |             |
 | Disposability       | Maximize robustness with fast startup and graceful shutdown      |             |
 | Dev/prod parity     | Keep development, staging, and production as similar as possible |             |
-| Logs                | Treat logs as event streams                                      |             |
-| Admin processes     | Run admin/management tasks as one-off processes                  |             |
+| Logs                | Treat logs as event streams                                      | ✓ Yes       |
+| Admin processes     | Run admin/management tasks as one-off processes                  | NA          |
 
 [DESIGN_DOCS]: https://empeje.github.io/last-mile-delivery/
 [MERMAID]: https://mermaidjs.github.io/#/
