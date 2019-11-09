@@ -25,23 +25,23 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 
 | Metrics             | Notes                                                         | Implemented |
 |---------------------|---------------------------------------------------------------|-------------|
-| Code Quality        | Standardization and static check using ESLint                 | - [x] Yes   |
+| Code Quality        | Standardization and static check using ESLint                 | ✓ Yes       |
 | Unit Testing        | Unit level testing for models                                 |             |
 | Integration Testing | Integration level testing e.g. API                            |             |
 | End-to-end Testing  | Blackbox testing, running real service with real ext. service |             |
-| Auto-reload in Dev  | File watcher that auto reload whenever changes occurs         | - [x] Yes   |
+| Auto-reload in Dev  | File watcher that auto reload whenever changes occurs         | ✓ Yes       |
 
 ## Production Checklist
 
 | Metrics             | Notes                                                            | Implemented |
 |---------------------|------------------------------------------------------------------|-------------|
-| Codebase            | One codebase tracked in revision control, many deploys           | - [x] Yes   |
-| Dependencies        | Explicitly declare and isolate dependencies                      | - [x] Yes   |
-| Config              | Store config in the environment                                  | - [x] Yes   |
+| Codebase            | One codebase tracked in revision control, many deploys           | ✓ Yes       |
+| Dependencies        | Explicitly declare and isolate dependencies                      | ✓ Yes       |
+| Config              | Store config in the environment                                  | ✓ Yes       |
 | Backing services    | Treat backing services as attached resources                     |             |
 | Build, release, run | Strictly separate build and run stages                           |             |
-| Processes           | Execute the app as one or more stateless processes               | - [x] Yes   |
-| Port binding        | Export services via port binding                                 | - [x] Yes   |
+| Processes           | Execute the app as one or more stateless processes               | ✓ Yes       |
+| Port binding        | Export services via port binding                                 | ✓ Yes       |
 | Concurrency         | Scale out via the process model                                  |             |
 | Disposability       | Maximize robustness with fast startup and graceful shutdown      |             |
 | Dev/prod parity     | Keep development, staging, and production as similar as possible |             |
