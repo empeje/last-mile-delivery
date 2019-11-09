@@ -1,6 +1,6 @@
 setup:
   config:
-    BACKEND_PORT: 80
+    PORT: 3000
 build:
   docker:
     web: Dockerfile

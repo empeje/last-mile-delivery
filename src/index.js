@@ -1,8 +1,8 @@
 import app from "./app";
-import { BACKEND_PORT } from "./config";
-import { errorLoggerMiddleware, requestLoggerMiddleware } from "./middleware";
+import {PORT} from "./config";
+import {errorLoggerMiddleware, requestLoggerMiddleware} from "./middleware";
 import router from "./routes";
-import { logger } from "./utils";
+import {logger} from "./utils";
 
 // Before the router attach request logger
 app.use(requestLoggerMiddleware);
@@ -13,8 +13,8 @@ app.use(router);
 // After the router attach error logger
 app.use(errorLoggerMiddleware);
 
-const server = app.listen(BACKEND_PORT, () => {
-  logger.info(`Server is running on port ${BACKEND_PORT}`);
+const server = app.listen(PORT, () => {
+  logger.info(`Server is running on port ${PORT}`);
 });
 
 process.on("SIGTERM", async () => {

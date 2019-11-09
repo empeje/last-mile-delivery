@@ -61,6 +61,18 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 | Logs                | Treat logs as event streams                                      | ✓ Yes       |
 | Admin processes     | Run admin/management tasks as one-off processes                  | NA          |
 
+## Deployment Using Heroku Docker
+
+### Update your Heroku CLI
+
+This meant to update your Heroku CLI to support setting up via heroku manifest setup
+
+```bash
+$ heroku update beta
+$ heroku plugins:install @heroku-cli/plugin-manifest
+```
+
+
 [DESIGN_DOCS]: https://empeje.github.io/last-mile-delivery/
 [MERMAID]: https://mermaidjs.github.io/#/
 [HUB_REGISTRY]: https://hub.docker.com/repository/docker/mappuji/last-mile-delivery
