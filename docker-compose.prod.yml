@@ -4,3 +4,5 @@ services:
   app:
     image: mappuji/last-mile-delivery
     volumes: []
+    deploy:
+      replicas: 1

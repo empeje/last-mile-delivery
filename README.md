@@ -55,7 +55,7 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 | Build, release, run | Strictly separate build and run stages                           | ✓ Yes       |
 | Processes           | Execute the app as one or more stateless processes               | ✓ Yes       |
 | Port binding        | Export services via port binding                                 | ✓ Yes       |
-| Concurrency         | Scale out via the process model                                  |             |
+| Concurrency         | Scale out via the process model                                  | ✓ Yes       |
 | Disposability       | Maximize robustness with fast startup and graceful shutdown      | ✓ Yes       |
 | Dev/prod parity     | Keep development, staging, and production as similar as possible | ✓ Yes       |
 | Logs                | Treat logs as event streams                                      | ✓ Yes       |
