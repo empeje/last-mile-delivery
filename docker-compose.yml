@@ -2,6 +2,7 @@ version: '3.7'
 
 volumes:
   mysql_volume:
+  node_modules:
 
 services:
   mysql:
@@ -17,4 +18,19 @@ services:
       - type: volume
         source: mysql_volume
         target: /var/lib/mysql
+
+  app:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./
+    volumes:
+      - type: volume
+        source: node_modules
+        target: /app/node_modules
+      - type: bind
+        source: ./
+        target: /app
+    depends_on:
+      - mysql
+
 

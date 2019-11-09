@@ -11,7 +11,7 @@
     "dev:docs": "yarn build:docs --watch",
     "deploy:docs": "yarn build:docs && gh-pages -d docs",
     "runner": "node -r esm",
-    "runner:dev": "node -r esm -r dotenv/config",
+    "runner:dev": "nodemon -r esm -r dotenv/config",
     "start": "yarn runner src/index.js",
     "develop": "yarn runner:dev src/index.js"
   },
@@ -31,6 +31,7 @@
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "mermaid": "^8.4.1",
+    "nodemon": "^1.19.4",
     "popper.js": "^1.16.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
