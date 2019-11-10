@@ -10,7 +10,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: last-mile-d
+      MYSQL_DATABASE: last-mile-delivery
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql-root

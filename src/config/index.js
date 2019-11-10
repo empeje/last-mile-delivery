@@ -1,1 +1,12 @@
-export const { PORT, BACKEND_LOG_FORMAT } = process.env;
+export const {
+  PORT,
+  LOG_FORMAT,
+  SQL_DATABASE,
+  SQL_DIALECT,
+  SQL_HOST,
+  SQL_OPERATOR_ALIASES,
+  SQL_PASSWORD,
+  SQL_SEEDER_STORAGE,
+  SQL_SEEDER_STORAGE_TABLE_NAME,
+  SQL_USERNAME
+} = process.env;
