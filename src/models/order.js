@@ -6,7 +6,33 @@ import {
 module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize;
 
-  class Order extends Model {}
+  class Order extends Model {
+    get destinationCoordinate() {
+      const parsedDestination = this.getDataValue("destination").split(",");
+      return {
+        lat: parsedDestination[0],
+        long: parsedDestination[1]
+      };
+    }
+
+    set destinationCoordinate(coordinateObject) {
+      const { lat, long } = coordinateObject;
+      this.setDataValue("destination", `${lat},${long}`);
+    }
+
+    get originCoordinate() {
+      const parsedDestination = this.getDataValue("origin").split(",");
+      return {
+        lat: parsedDestination[0],
+        long: parsedDestination[1]
+      };
+    }
+
+    set originCoordinate(coordinateObject) {
+      const { lat, long } = coordinateObject;
+      this.setDataValue("origin", `${lat},${long}`);
+    }
+  }
 
   Order.init(
     {

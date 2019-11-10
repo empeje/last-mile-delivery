@@ -57,7 +57,7 @@ describe("Order Model", () => {
     });
   });
 
-  describe("paranoid table", () => {
+  describe("Paranoid table", () => {
     let newOrder;
     let orderData;
 
@@ -87,6 +87,78 @@ describe("Order Model", () => {
       });
       expect(results).to.have.length(1);
       expect(results[0].destination).to.equal(orderData.destination);
+    });
+  });
+
+  describe("Getter Setter", () => {
+    let newOrder;
+    let orderData;
+
+    beforeEach(async () => {
+      orderData = generateOrderData();
+      newOrder = await Order.create(orderData);
+    });
+
+    afterEach(() => newOrder.destroy({ force: true }));
+
+    describe("destinationCoordinate", async () => {
+      it("should be able to get correct data", () => {
+        const parsedDestination = newOrder.destinationCoordinate;
+        const rawExpectedParsedDestination = orderData.destination.split(",");
+        const expectedLat = rawExpectedParsedDestination[0];
+        const expectedLong = rawExpectedParsedDestination[1];
+
+        expect(parsedDestination).to.eql({
+          lat: expectedLat,
+          long: expectedLong
+        });
+      });
+
+      it("should be able to set correct data", async () => {
+        const expectedDestination = "123,456";
+        const expectedLat = expectedDestination.split(",")[0];
+        const expectedLong = expectedDestination.split(",")[1];
+
+        newOrder.destinationCoordinate = {
+          lat: expectedLat,
+          long: expectedLong
+        };
+
+        await newOrder.save();
+        await newOrder.reload(); // this to make sure data persist to disk
+
+        expect(newOrder.destination).to.equal(expectedDestination);
+      });
+    });
+
+    describe("originCoordinate", async () => {
+      it("should be able to get correct data", () => {
+        const parsedOrigin = newOrder.originCoordinate;
+        const rawExpectedParsedOrigin = orderData.origin.split(",");
+        const expectedLat = rawExpectedParsedOrigin[0];
+        const expectedLong = rawExpectedParsedOrigin[1];
+
+        expect(parsedOrigin).to.eql({
+          lat: expectedLat,
+          long: expectedLong
+        });
+      });
+
+      it("should be able to set correct data", async () => {
+        const expectedOrigin = "123,456";
+        const expectedLat = expectedOrigin.split(",")[0];
+        const expectedLong = expectedOrigin.split(",")[1];
+
+        newOrder.originCoordinate = {
+          lat: expectedLat,
+          long: expectedLong
+        };
+
+        await newOrder.save();
+        await newOrder.reload(); // this to make sure data persist to disk
+
+        expect(newOrder.origin).to.equal(expectedOrigin);
+      });
     });
   });
 });
