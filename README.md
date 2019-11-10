@@ -11,7 +11,7 @@ You can use [https://last-mile-delivery.herokuapp.com/][heroku_instance] for Liv
 - You can run the following script which run our [docker-compose](./docker-compose.yml) setup in detached mode and then attached to the logs so that you'll not stop the app when you detached from the log.
 
 ```bash
-./start.sh
+$ ./start.sh
 ```
 
 ## How to run from packaged Docker image
@@ -19,7 +19,7 @@ You can use [https://last-mile-delivery.herokuapp.com/][heroku_instance] for Liv
 We've prebuild Docker image stored as [mappuji/last-mile-delivery][hub_registry] in DockerHub. Where you can run it like this
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml
+$ docker-compose -f docker-compose.yml -f docker-compose.prod.yml
 ```
 
 This run exactly the same thing with running it from source except we use prebuilt image that already pushed to DockerHub.
@@ -34,7 +34,7 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 2. Upload the GitHub pages using
 
    ```bash
-   yarn deploy:docs
+   $ yarn deploy:docs
    ```
 
 ## Development Infrastructure Checklist
