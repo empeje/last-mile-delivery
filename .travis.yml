@@ -1,6 +1,6 @@
 _test_scripts: &_test_scripts
   before_install:
-    - mysql -e 'CREATE DATABASE last-mile-delivery;'
+    - mysql -e 'CREATE DATABASE travis;'
   script:
     - yarn test
 
@@ -8,7 +8,7 @@ env:
   global:
     - PORT=8080
     - LOG_FORMAT=json
-    - SQL_DATABASE=last-mile-delivery
+    - SQL_DATABASE=travis
     - SQL_HOST=127.0.0.1
     - SQL_PASSWORD=
     - SQL_USERNAME=travis
