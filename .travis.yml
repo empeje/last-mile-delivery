@@ -1,6 +1,6 @@
 _test_scripts: &_test_scripts
   before_install:
-    - mysql -e 'CREATE DATABASE travis;'
+    - mysql -e 'CREATE DATABASE test;'
   script:
     - yarn test
 
@@ -8,7 +8,7 @@ env:
   global:
     - PORT=8080
     - LOG_FORMAT=json
-    - SQL_DATABASE=travis
+    - SQL_DATABASE=test
     - SQL_HOST=127.0.0.1
     - SQL_PASSWORD=
     - SQL_USERNAME=travis
