@@ -74,7 +74,17 @@ This meant to update your Heroku CLI to support setting up via heroku manifest s
 ```bash
 $ heroku update beta
 $ heroku plugins:install @heroku-cli/plugin-manifest
+```
+
+### Create your Heroku app
+
+```bash
 $ heroku create your-app-name --manifest
+```
+
+### Deploy your app
+
+```bash
 $ git push heroku master
 ```
 
