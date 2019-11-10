@@ -1,6 +1,6 @@
-import mermaid from 'mermaid'
-import 'bootstrap';
+import mermaid from "mermaid";
+import "bootstrap";
 
 mermaid.initialize({
-  theme: 'forest',
+  theme: "forest"
 });

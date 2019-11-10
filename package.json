@@ -16,6 +16,22 @@
     "develop": "yarn runner:dev src/index.js",
     "test": "yarn runner $(which npx) mocha test/**/*.test.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
@@ -31,7 +47,9 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-security": "^1.4.0",
     "gh-pages": "^2.1.1",
+    "husky": "^3.0.9",
     "jquery": "^3.4.1",
+    "lint-staged": "^9.4.2",
     "mermaid": "^8.4.1",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
