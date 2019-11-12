@@ -2,11 +2,22 @@ import {
   ENUM_ORDER_STATUS_TAKEN,
   ENUM_ORDER_STATUS_UNASSIGNED
 } from "../constants";
+import { googleMapsClient } from "../services";
 
 module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize;
 
   class Order extends Model {
+    async getDistance() {
+      return googleMapsClient
+        .distanceMatrix({
+          origins: [this.origin],
+          destinations: [this.destination],
+          units: "metric"
+        })
+        .asPromise();
+    }
+
     get destinationCoordinate() {
       const parsedDestination = this.getDataValue("destination").split(",");
       return {

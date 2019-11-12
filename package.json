@@ -67,11 +67,13 @@
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "popper.js": "^1.16.0",
+    "prettier": "^1.19.1",
     "sequelize-cli": "^5.5.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@google/maps": "^1.0.2",
     "body-parser": "^1.19.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",

@@ -161,4 +161,22 @@ describe("Order Model", () => {
       });
     });
   });
+
+  describe("Instance method", () => {
+    describe("getDistance", () => {
+      it("should be able to get distance from Google Maps API", async () => {
+        const newOrder = await Order.create({
+          origin: "-6.2179265,106.8225", // Somewhere in Jakarta
+          destination: "-6.1701812,106.8219857" // Presidential Palace Jakarta
+        });
+
+        const distance = await newOrder.getDistance();
+        expect(distance.json.rows[0].elements[0]).to.deep.equal({
+          distance: { text: "9.2 km", value: 9171 },
+          duration: { text: "24 mins", value: 1463 },
+          status: "OK"
+        });
+      });
+    });
+  });
 });
