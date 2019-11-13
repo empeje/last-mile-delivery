@@ -2,13 +2,17 @@ import * as chai from "chai";
 import chaiUuid from "chai-uuid";
 import * as faker from "faker";
 import { afterEach, beforeEach, describe, it } from "mocha";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
 import {
   ENUM_ORDER_STATUS_TAKEN,
   ENUM_ORDER_STATUS_UNASSIGNED
 } from "../../../src/constants";
 import models from "../../../src/models";
+import { googleMapsClient } from "../../../src/services";
 
 const { expect } = chai;
+chai.use(sinonChai);
 chai.use(chaiUuid);
 
 const { random } = faker;
@@ -164,6 +168,40 @@ describe("Order Model", () => {
 
   describe("Instance method", () => {
     describe("getDistance", () => {
+      const distanceMatrix = {
+        json: {
+          rows: [
+            {
+              elements: [
+                {
+                  distance: {
+                    text: "9.2 km",
+                    value: 9171
+                  },
+                  duration: {
+                    text: "24 mins",
+                    value: 1463
+                  },
+                  status: "OK"
+                }
+              ]
+            }
+          ]
+        }
+      };
+      let googleMapsStub;
+
+      beforeEach(() => {
+        googleMapsStub = sinon.stub(googleMapsClient, "distanceMatrix");
+        googleMapsStub.returns({
+          asPromise: () => distanceMatrix
+        });
+      });
+
+      afterEach(() => {
+        googleMapsStub.restore();
+      });
+
       it("should be able to get distance from Google Maps API", async () => {
         const newOrder = await Order.create({
           origin: "-6.2179265,106.8225", // Somewhere in Jakarta
@@ -171,11 +209,7 @@ describe("Order Model", () => {
         });
 
         const distance = await newOrder.getDistance();
-        expect(distance.json.rows[0].elements[0]).to.deep.equal({
-          distance: { text: "9.2 km", value: 9171 },
-          duration: { text: "24 mins", value: 1463 },
-          status: "OK"
-        });
+        expect(distance).to.deep.equal(distanceMatrix.json.rows[0].elements[0]);
       });
     });
   });

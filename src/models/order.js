@@ -1,3 +1,4 @@
+import get from "lodash/get";
 import {
   ENUM_ORDER_STATUS_TAKEN,
   ENUM_ORDER_STATUS_UNASSIGNED
@@ -9,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
 
   class Order extends Model {
     async getDistance() {
-      return googleMapsClient
+      const distanceMatrix = await googleMapsClient
         .distanceMatrix({
           origins: [this.origin],
           destinations: [this.destination],
           units: "metric"
         })
         .asPromise();
+      return get(distanceMatrix, "json.rows[0].elements[0]", null);
     }
 
     get destinationCoordinate() {
