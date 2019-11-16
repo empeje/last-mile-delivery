@@ -95,6 +95,28 @@ $ heroku plugins:install @heroku-cli/plugin-manifest
 $ heroku create your-app-name --manifest
 ```
 
+### Create Clear DB add-ons
+
+```bash
+$ heroku addons:create cleardb:ignite
+# command below will return
+# CLEARDB_DATABASE_URL: mysql://<username>:<password>@<url>/<database_name>?reconnect=true
+$ heroku config | grep CLEARDB_DATABASE_URL # copy the information to config
+
+# Set database configuration
+heroku config:set PORT=8080
+heroku config:set LOG_FORMAT=simple
+heroku config:set SQL_DATABASE=YOUR_HEROKU_DATABASE
+heroku config:set SQL_HOST=YOUR_HEROKU_DATABASE_HOST
+heroku config:set SQL_PASSWORD=YOUR_HEROKU_DATABASE_PASSWORD
+heroku config:set SQL_USERNAME=YOUR_HEROKU_DATABASE_USERNAME
+heroku config:set SQL_DIALECT=mysql
+heroku config:set SQL_OPERATOR_ALIASES=false
+heroku config:set SQL_SEEDER_STORAGE=sequelize
+heroku config:set SQL_SEEDER_STORAGE_TABLE_NAME=SequelizeData
+heroku config:set GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
+```
+
 ### Deploy your app
 
 ```bash
