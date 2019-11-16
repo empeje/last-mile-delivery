@@ -1,4 +1,7 @@
-import { ENUM_ORDER_STATUS_UNASSIGNED } from "../constants";
+import {
+  ENUM_ORDER_STATUS_SUCCESS,
+  ENUM_ORDER_STATUS_UNASSIGNED
+} from "../constants";
 import models from "../models";
 
 const { Order } = models;
@@ -23,6 +26,21 @@ export const createOrder = async (req, res, next) =>
     })
     .catch(next);
 
-export const takeOrder = () => {};
+export const takeOrder = (req, res, next) =>
+  models.sequelize
+    .transaction(async transaction => {
+      const { id } = req.params;
+      const { status } = req.body;
+      const order = await Order.findByPk(id, { transaction });
+      if (!order) {
+        return res.status(400).send({ error: "Order not found" });
+      }
+
+      if (order && order.status !== status) {
+        await order.update({ status }, { transaction });
+      }
+      return res.status(200).send({ status: ENUM_ORDER_STATUS_SUCCESS });
+    })
+    .catch(next);
 
 export const listOrders = () => {};
