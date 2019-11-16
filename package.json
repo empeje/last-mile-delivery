@@ -13,6 +13,7 @@
     "runner": "node -r esm",
     "runner:dev": "node -r esm -r dotenv/config",
     "runner:dev:watch": "nodemon -r esm -r dotenv/config",
+    "prestart": "yarn db:migrate && yarn db:seed:all",
     "start": "yarn runner src/index.js",
     "develop": "yarn runner:dev:watch src/index.js",
     "pretest": "yarn db:migrate && yarn db:seed:all",
