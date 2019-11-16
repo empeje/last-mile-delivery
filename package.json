@@ -16,7 +16,7 @@
     "start": "yarn runner src/index.js",
     "develop": "yarn runner:dev:watch src/index.js",
     "pretest": "yarn db:migrate && yarn db:seed:all",
-    "test": "yarn runner:dev $(which npx) mocha test/**/*.test.js",
+    "test": "yarn runner:dev $(which npx) mocha --recursive test",
     "posttest": "yarn db:seed:undo:all && yarn db:migrate:undo:all",
     "sequelize": "yarn runner:dev $(which npx) sequelize",
     "db:migrate": "yarn sequelize db:migrate",
@@ -71,6 +71,7 @@
     "sequelize-cli": "^5.5.1",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
+    "supertest": "^4.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },

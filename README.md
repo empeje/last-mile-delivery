@@ -8,6 +8,19 @@ You can use [https://last-mile-delivery.herokuapp.com/][heroku_instance] for Liv
 
 ## How to run from source
 
+- Copy `.env.example` to `.env`, this `.env` file will be used in local for test, and development purposes. For production .env will not be used and system environment variables will be used.
+
+```bash
+$ cp .env.example .env
+```
+
+- Edit `.env` file as needed, here are the most important config to change
+
+```bash
+PORT=8080 # this is the port we want to expose, if you change this, please look at the `docker-compose.yml` as well
+GOOGLE_MAPS_API_KEY= # this is the Google Maps API Key
+```
+
 - You can run the following script which run our [docker-compose](./docker-compose.yml) setup in detached mode and then attached to the logs so that you'll not stop the app when you detached from the log.
 
 ```bash
