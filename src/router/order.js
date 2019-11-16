@@ -7,6 +7,7 @@ import {
 import { validator } from "../utils";
 import {
   createOrderBodyValidation,
+  listOrderQueryValidation,
   takeOrderBodyValidation,
   takeOrderParamsValidation
 } from "../validations/orderValidation";
@@ -20,6 +21,6 @@ router.patch(
   validator.body(takeOrderBodyValidation),
   takeOrder
 );
-router.get("/", listOrders);
+router.get("/", validator.query(listOrderQueryValidation), listOrders);
 
 export default router;

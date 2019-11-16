@@ -31,3 +31,10 @@ export const takeOrderBodyValidation = Joi.object({
     .valid(ENUM_ORDER_STATUS_TAKEN)
     .required()
 });
+
+export const listOrderQueryValidation = Joi.object({
+  page: Joi.number()
+    .integer()
+    .min(1),
+  limit: Joi.number().integer()
+});

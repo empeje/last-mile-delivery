@@ -3,6 +3,7 @@ import {
   ENUM_ORDER_STATUS_UNASSIGNED
 } from "../constants";
 import models from "../models";
+import { paginate } from "../utils";
 
 const { Order } = models;
 
@@ -43,4 +44,19 @@ export const takeOrder = (req, res, next) =>
     })
     .catch(next);
 
-export const listOrders = () => {};
+export const listOrders = async (req, res, next) => {
+  try {
+    const { page, limit } = req.query;
+
+    const orders = await Order.findAll({
+      // reference: https://stackoverflow.com/a/8040702/5515861
+      attributes: ["id", "distance", "status"],
+      raw: true,
+      ...paginate({ page: Number(page) - 1, pageSize: Number(limit) })
+    });
+
+    res.status(200).send(orders);
+  } catch (err) {
+    next(err);
+  }
+};

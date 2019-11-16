@@ -24,7 +24,6 @@ export const notFoundMiddleware = (req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 export const errorHandlerMiddleware = (err, req, res, next) => {
   logger.error(err);
-  console.log({ err });
   let statusCode = err.status;
   let errorMessage = err.message;
   const errorName = err.name;

@@ -41,7 +41,7 @@ describe("Orders API", () => {
             distance: distanceMatrix.json.rows[0].elements[0].distance.value
           }
         });
-        order.destroy({ force: true });
+        await order.destroy({ force: true });
       });
 
       it("should return correct API response", async () => {
@@ -183,7 +183,7 @@ describe("Orders API", () => {
         });
       });
       afterEach(async () => {
-        newOrder.destroy({ force: true });
+        await newOrder.destroy({ force: true });
       });
 
       it("should return correct result", async () => {
@@ -266,5 +266,94 @@ describe("Orders API", () => {
     });
   });
 
-  describe("List orders", () => {});
+  describe("List orders", () => {
+    let newOrders;
+    let newRawOrders;
+
+    beforeEach(async () => {
+      const sampleSize = 5;
+      newOrders = [];
+      for (let i = 1; i <= sampleSize; i += 1) {
+        newOrders.push(i);
+      }
+      newOrders = await Promise.all(
+        newOrders.map(async () =>
+          Order.create({
+            origin,
+            destination,
+            distance: random.number()
+          })
+        )
+      );
+
+      newRawOrders = await Order.findAll({
+        attributes: ["id", "distance", "status"],
+        raw: true
+      });
+    });
+
+    afterEach(async () => {
+      await Promise.all(newOrders.map(order => order.destroy({ force: true })));
+    });
+
+    describe("Successfully retrieve data", () => {
+      it("page number should start with 1", async () => {
+        const page = 1;
+        const limit = 3;
+        const res = await request(app)
+          .get(`/orders?page=${page}&limit=${limit}`)
+          .set("Accept", "application/json")
+          .expect(200);
+        expect(res.body).to.deep.equal(
+          // parse the stringify version is a hack to make sure the compared data is JSON-serialized format
+          JSON.parse(JSON.stringify(newRawOrders.slice(0, 3)))
+        );
+        expect(res.body.length).to.equal(limit);
+      });
+
+      it("correctly retrieve remaining page", async () => {
+        const page = 2;
+        const limit = 3;
+        const res = await request(app)
+          .get(`/orders?page=${page}&limit=${limit}`)
+          .set("Accept", "application/json")
+          .expect(200);
+        expect(res.body).to.deep.equal(
+          // parse the stringify version is a hack to make sure the compared data is JSON-serialized format
+          JSON.parse(JSON.stringify(newRawOrders.slice(3, 5)))
+        );
+        expect(res.body.length).to.equal(2);
+      });
+    });
+
+    describe("Failed retrieve data", () => {
+      it("should return empty array when there's no result", async () => {
+        const page = 3;
+        const limit = 3;
+        const res = await request(app)
+          .get(`/orders?page=${page}&limit=${limit}`)
+          .set("Accept", "application/json")
+          .expect(200);
+        expect(res.body).to.deep.equal([]);
+      });
+
+      it("should return error response if page is not valid integer", async () => {
+        const page = "not an integer";
+        const limit = 3;
+        await request(app)
+          .get(`/orders?page=${page}&limit=${limit}`)
+          .set("Accept", "application/json")
+          .expect(400);
+      });
+
+      it("should return error response if limit is not valid integer", async () => {
+        const page = 3;
+        const limit = "not an integer";
+        await request(app)
+          .get(`/orders?page=${page}&limit=${limit}`)
+          .set("Accept", "application/json")
+          .expect(400);
+      });
+    });
+  });
 });
