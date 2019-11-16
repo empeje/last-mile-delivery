@@ -23,11 +23,16 @@ export const notFoundMiddleware = (req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 export const errorHandlerMiddleware = (err, req, res, next) => {
+  logger.error(err);
+  console.log({ err });
   let statusCode = err.status;
   let errorMessage = err.message;
   const errorName = err.name;
 
   switch (errorName) {
+    case "SequelizeConnectionRefusedError":
+      statusCode = 500;
+      break;
     case "Error":
       statusCode = 500;
       break;
@@ -35,9 +40,14 @@ export const errorHandlerMiddleware = (err, req, res, next) => {
       statusCode = 404;
       break;
     default:
-      logger.error(err);
       statusCode = statusCode || 500;
       errorMessage = errorMessage || "Internal server error.";
+  }
+
+  // If coming from Joi
+  if (!errorName && err.error) {
+    statusCode = 400;
+    errorMessage = err.error ? err.error.details : "Internal server error.";
   }
 
   res.status(statusCode).send({ error: errorMessage });

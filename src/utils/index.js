@@ -1,3 +1,4 @@
+import { createValidator } from "express-joi-validation";
 import { createLogger, format, transports } from "winston";
 import { LOG_FORMAT } from "../config";
 
@@ -15,3 +16,7 @@ export const logger = (() => {
     transports: [new transports.Console()]
   });
 })();
+
+export const validator = createValidator({
+  passError: true
+});
