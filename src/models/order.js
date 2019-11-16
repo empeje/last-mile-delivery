@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           units: "metric"
         })
         .asPromise();
-      return get(distanceMatrix, "json.rows[0].elements[0]", null);
+      return get(distanceMatrix, "json.rows[0].elements[0].distance", null);
     }
 
     get destinationCoordinate() {

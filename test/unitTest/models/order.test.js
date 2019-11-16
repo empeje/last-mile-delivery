@@ -10,6 +10,7 @@ import {
 } from "../../../src/constants";
 import models from "../../../src/models";
 import { googleMapsClient } from "../../../src/services";
+import { distanceMatrix } from "../../fixtures";
 
 const { expect } = chai;
 chai.use(sinonChai);
@@ -168,27 +169,6 @@ describe("Order Model", () => {
 
   describe("Instance method", () => {
     describe("getDistance", () => {
-      const distanceMatrix = {
-        json: {
-          rows: [
-            {
-              elements: [
-                {
-                  distance: {
-                    text: "9.2 km",
-                    value: 9171
-                  },
-                  duration: {
-                    text: "24 mins",
-                    value: 1463
-                  },
-                  status: "OK"
-                }
-              ]
-            }
-          ]
-        }
-      };
       let googleMapsStub;
 
       beforeEach(() => {
@@ -209,7 +189,9 @@ describe("Order Model", () => {
         });
 
         const distance = await newOrder.getDistance();
-        expect(distance).to.deep.equal(distanceMatrix.json.rows[0].elements[0]);
+        expect(distance).to.deep.equal(
+          distanceMatrix.json.rows[0].elements[0].distance
+        );
       });
     });
   });

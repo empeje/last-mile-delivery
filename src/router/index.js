@@ -4,7 +4,7 @@ import order from "./order";
 
 const router = express.Router();
 
-router.use("/order", order);
+router.use("/orders", order);
 router.use(notFoundMiddleware);
 
 export default router;
