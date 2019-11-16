@@ -56,6 +56,26 @@ describe("Orders API", () => {
           status: ENUM_ORDER_STATUS_UNASSIGNED
         });
       });
+
+      it("should create the order", async () => {
+        await request(app)
+          .post("/orders")
+          .send({
+            origin: [origin.split(",")[0], origin.split(",")[1]],
+            destination: [destination.split(",")[0], destination.split(",")[1]]
+          })
+          .set("Accept", "application/json");
+
+        const order = await Order.findOne({
+          where: {
+            origin,
+            destination,
+            distance: distanceMatrix.json.rows[0].elements[0].distance.value
+          }
+        });
+
+        expect(order).to.not.be.null;
+      });
     });
 
     describe("Order creation should be a transaction", () => {
