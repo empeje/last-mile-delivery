@@ -14,7 +14,7 @@ const logging = log => {
   logger.info(log);
 };
 
-export default {
+const config = {
   username: SQL_USERNAME,
   password: SQL_PASSWORD,
   database: SQL_DATABASE,
@@ -25,3 +25,11 @@ export default {
   seederStorageTableName: SQL_SEEDER_STORAGE_TABLE_NAME,
   logging
 };
+
+/**
+ * This hack for double export using esm and require.js is required
+ * in order for sequelize.js config works for both sequelize-cli and
+ * models package in models/index.js
+ */
+export default config;
+module.exports = config;

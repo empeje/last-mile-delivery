@@ -1,6 +1,7 @@
 export const {
   PORT,
   LOG_FORMAT,
+  GOOGLE_MAPS_API_KEY,
   SQL_DATABASE,
   SQL_DIALECT,
   SQL_HOST,
