@@ -56,8 +56,8 @@ The architectural design of the system can be open at [empeje.github.io/last-mil
 | ------------------- | ------------------------------------------------------------- | ----------- |
 | Code Quality        | Standardization and static check using ESLint                 | ✓ Yes       |
 | Unit Testing        | Unit level testing for models                                 | ✓ Yes       |
-| Integration Testing | Integration level testing e.g. API                            |             |
-| End-to-end Testing  | Blackbox testing, running real service with real ext. service |             |
+| Integration Testing | Integration level testing e.g. API                            | ✓ Yes       |
+| End-to-end Testing  | Blackbox testing, running real service with real ext. service | NA          |
 | Auto-reload in Dev  | File watcher that auto reload whenever changes occurs         | ✓ Yes       |
 | Continuous Int.     | Continuous integration using Travis CI for public repository  | ✓ Yes       |
 
