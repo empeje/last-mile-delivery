@@ -63,7 +63,7 @@
     "husky": "^3.0.9",
     "jquery": "^3.5.0",
     "lint-staged": "^9.4.2",
-    "mermaid": "^8.4.1",
+    "mermaid": "^9.1.2",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "popper.js": "^1.16.0",
